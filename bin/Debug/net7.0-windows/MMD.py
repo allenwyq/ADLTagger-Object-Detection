@@ -45,7 +45,7 @@ def extractImages(pathIn, pathOut):
 
 # Capture frames from videos        
 # pathIn = 'Input\\videoplayback.mp4'
-# pathOut = 'Output\\frames'
+# pathOut = 'C:\Users\allen\Desktop\Output\\frames'
 # extractImages(pathIn, pathOut)
 
 
@@ -59,15 +59,18 @@ model = init_detector(config_file, checkpoint_file, device='cuda:0')
 
 
 # Input image folder path
-image_in = 'Input\\data50'
+image_in = "Input\\data50"
 
-# Output labeled image folder path
-image_out = 'Output\\labeled_image'
+# C:\Users\allen\Desktop\Output folder path
+output_path = "Output"
 
-# Output labels and scores
-label_path = 'Output\\label_output'
+# C:\Users\allen\Desktop\Output labeled image folder path
+image_out = os.path.join(output_path, "labeled_image")
 
-# Output file
+# C:\Users\allen\Desktop\Output labels and scores
+label_path = os.path.join(output_path, "label_output")
+
+# C:\Users\allen\Desktop\Output file
 label_file = os.path.join(label_path, "Objects.xml")
 
 
