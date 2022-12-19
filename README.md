@@ -6,3 +6,5 @@ The FormMain.cs should be the main ADLTagger application's main form (Right now 
 The FormObject.cs is the new window for object detection
 
 In bin/Debug/net7.0-windows/MMD.py is where the python code for the object detection actually takes place using the MMDetection library of python.
+
+The sample output of xml file and labeled images can be found in bin/Debug/net7.0-windows/Output
