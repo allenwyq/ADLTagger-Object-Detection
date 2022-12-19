@@ -34,19 +34,21 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(356, 198);
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.Location = new System.Drawing.Point(579, 215);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(670, 74);
+            this.label3.Size = new System.Drawing.Size(727, 74);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Object Detection Finished";
+            this.label3.Text = "Object Detection Finished!\r\n";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormObject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1336, 580);
+            this.ClientSize = new System.Drawing.Size(1848, 518);
             this.Controls.Add(this.label3);
             this.Name = "FormObject";
             this.Text = "Object Detection";
@@ -57,8 +59,6 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
         private Label label3;
     }
 }
