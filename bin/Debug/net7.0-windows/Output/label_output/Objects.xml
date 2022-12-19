@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+
+<DataContainer>
+	<dilist>
+		<datapath>Input\data50</datapath>
+	</dilist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.9839107</object_score>
+		<box_coordinate>[643.12616 296.97748 820.0788  637.19574]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.98522544</object_score>
+		<box_coordinate>[642.8821 297.3069 819.2859 636.6404]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.9850402</object_score>
+		<box_coordinate>[642.5648  296.4375  819.1797  636.73035]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.9840052</object_score>
+		<box_coordinate>[642.9426  296.74207 818.5736  636.5361 ]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.98404247</object_score>
+		<box_coordinate>[643.0907  295.70667 817.3972  637.5919 ]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.9843871</object_score>
+		<box_coordinate>[642.99866 295.90125 817.14624 637.49225]</box_coordinate>
+	</objectlist>
+	<objectlist>
+		<object_class>person</object_class>
+		<start>2021-11-16T11:50:00.000</start>
+		<end>2021-11-16T11:50:00.999</end>
+		<labeldtime>2021-11-16T11:50:00</labeldtime>
+		<object_score>0.98491555</object_score>
+		<box_coordinate>[642.888  295.2521 816.5987 637.8098]</box_coordinate>
+	</objectlist>
+</DataContainer>
