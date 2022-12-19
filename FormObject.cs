@@ -21,6 +21,5 @@ namespace ObjDet
         {
             InitializeComponent();
         }
-
     }
 }
