@@ -93,26 +93,33 @@ if not os.path.exists(output_path):
     os.makedirs(output_path)
 
 
+# Check if the file already exists
+if os.path.exists(label_file):
+    # If the file exists, open it and parse the XML tree
+    tree = ET.parse(label_file)
+    # Get the root element of the tree
+    root = tree.getroot()
+else:
+    # If the file does not exist, create a new root element
+    root = ET.Element("DataContainer")
 
-#image_out = os.path.join(output_path, "labeled_image")
-#if not os.path.exists(image_out):
-#    os.makedirs(image_out)
 
-
-
-# Create root element
-root = ET.Element("DataContainer")
 #dilist = ET.SubElement(root, "dilist")
 #ET.SubElement(dilist, "datapath").text = root_path
 
 
 # Iterate over the images for xml output
 for files in os.listdir(input_path):
+
+
     img = os.path.join(input_path, files)
     result = inference_detector(model, img)
 
     # Output images first
     show_result_pyplot(model, img, result, score_thr=0.4, out_file = os.path.join(output_path, files))
+
+    
+
 
     # Get label class and score
     bbox_result = result
@@ -127,8 +134,8 @@ for files in os.listdir(input_path):
     classes = core.get_classes("coco")
     labels_impt_list = [labels[i] for i in labels_impt]
     labels_class = [classes[i] for i in labels_impt_list]
-    labels_score = [bboxes[:, -1][i] for i in labels_impt]
-    box_dim = [bboxes[:, 0:4][i] for i in labels_impt]
+    #labels_score = [bboxes[:, -1][i] for i in labels_impt]
+    #box_dim = [bboxes[:, 0:4][i] for i in labels_impt]
     
     
     # Create a subelement for each image
@@ -160,17 +167,23 @@ for files in os.listdir(input_path):
     #ET.SubElement(doc, "object_score").text = sc
     #ET.SubElement(doc, "box_coordinate").text = bd
 
-    dom = xml.dom.minidom.parseString(ET.tostring(root))
-    xml_string = dom.toprettyxml()
-    part1, part2 = xml_string.split('?>')
 
-    with open(label_file, 'w') as xfile:
-        xfile.write(part1+'?>\n' + part2)
-        xfile.close()    
+# Create an ElementTree object
+#tree = ET.ElementTree(root)
+# Convert the ElementTree to a string
+xml_string = ET.tostring(root, encoding='utf-8', method='xml')
+# Parse the XML string into a DOM object
+dom = xml.dom.minidom.parseString(xml_string)
+# Pretty-print DOM object
+xml_string = dom.toprettyxml()
+
+# Write the XML string to the file
+#mode = "a" if os.path.exists(label_file) else "w"
+
+with open(label_file, "w") as f:
+    f.write(xml_string) 
 
 
-
-#print("Object Detection Finished!")
 
 
 
