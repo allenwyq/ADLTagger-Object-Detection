@@ -53,9 +53,9 @@ def extractImages(pathIn, pathOut):
 
 # path for py to run individually, add MMDet\\bin\\Debug\\ at the beginning
 
-config_file = 'Configs\\yolov3_mobilenetv2_320_300e_coco.py'
-checkpoint_file = 'Configs\\yolov3_mobilenetv2_320_300e_coco_20210719_215349-d18dff72.pth'
-model = init_detector(config_file, checkpoint_file, device='cuda:0')
+config_file = 'C:\\Users\\litch\\OneDrive\\デスクトップ\\enshu\\wang\\ADLTaggerObjectDetection\\bin\\Debug\\net7.0-windows\\Configs\\yolov3_mobilenetv2_320_300e_coco.py'
+checkpoint_file = 'C:\\Users\\litch\\OneDrive\\デスクトップ\\enshu\\wang\\ADLTaggerObjectDetection\\bin\Debug\\net7.0-windows\\Configs\\yolov3_mobilenetv2_320_300e_coco_20210719_215349-d18dff72.pth'
+model = init_detector(config_file, checkpoint_file, device='cpu')
 
 
 
@@ -72,8 +72,9 @@ output_path = sys.argv[2]
 
 # Output xml file path
 xml_name = sys.argv[3]
-xml_path = r"C:\Users\allen\Desktop"
-#xml_name = sys.argv[4]
+
+# xml_path = r"C:\\Users\\allen\\Desktop"
+xml_path = sys.argv[4]
 
 # Output xml file name
 label_file = os.path.join(xml_path, xml_name)
@@ -107,7 +108,10 @@ root = ET.Element("DataContainer")
 
 
 # Iterate over the images for xml output
+fileBefore = "YamashitaTakuma"
 for files in os.listdir(input_path):
+    if fileBefore[-9] == files[-9]:
+        continue
     img = os.path.join(input_path, files)
     result = inference_detector(model, img)
 
@@ -168,7 +172,7 @@ for files in os.listdir(input_path):
         xfile.write(part1+'?>\n' + part2)
         xfile.close()    
 
-
+    fileBefore = files
 
 #print("Object Detection Finished!")
 
