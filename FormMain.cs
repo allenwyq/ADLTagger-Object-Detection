@@ -11,6 +11,7 @@ namespace ObjDet
         private string PythonFilePath;
         private string PythonInputPath;
         private string PythonOutputPath;
+        private string PythonXmlName;
 
 
         private string PythonInterpreterPath;
@@ -87,6 +88,28 @@ namespace ObjDet
 
         }
 
+        // Textbox
+        private void XmlTextbox_TextChanged(object sender, EventArgs e)
+        {
+            string fileName = XmlTextbox.Text;
+            string fullFileName = string.Format("{0}.xml", fileName);
+            PythonXmlName = fullFileName;
+        }
+
+
+        // Button to change xml output path
+
+        //private void ButtonXml_Click_1(object sender, EventArgs e)
+        //{
+        //    using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+        //    {
+        //        if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            PythonXmlPath = folderBrowserDialog.SelectedPath;
+        //        }
+        //    }
+        //}
+
 
 
 
@@ -100,17 +123,27 @@ namespace ObjDet
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = PythonInterpreterPath,
-                Arguments = string.Format("{0} {1} {2}", PythonFilePath, PythonInputPath, PythonOutputPath),
+                Arguments = string.Format("{0} {1} {2} {3}", PythonFilePath, PythonInputPath, PythonOutputPath, PythonXmlName),
                 UseShellExecute = false,
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
             };
 
             Process process = Process.Start(startInfo);
             string result = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
             process.WaitForExit();
 
+            if (!string.IsNullOrEmpty(error))
+            {
+                // Display the error output in a MessageBox 
+                MessageBox.Show(error, "Error/Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+          
+            
             FormObject formObject = new ObjDet.FormObject();
             formObject.ShowDialog();
+            
         }
 
     }

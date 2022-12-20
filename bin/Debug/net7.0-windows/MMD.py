@@ -14,6 +14,8 @@ from mmdet import core
 
 import xml.etree.cElementTree as ET
 import xml.dom.minidom
+import datetime
+
 
 
 
@@ -58,30 +60,50 @@ model = init_detector(config_file, checkpoint_file, device='cuda:0')
 
 
 
-# Input image folder path
-# input_path = "Input\\data50"
+# Input folder path
 input_path = sys.argv[1]
+# C:\allen\desktop\input\2019\...\56
+# C:\mmde\output
+# C:\mmde\output\2019\...\56
+# yyyy\mm\dd\hh\m
 
-# C:\Users\allen\Desktop\Output folder path
-# output_path = "Output"
+# Output image folder path
 output_path = sys.argv[2]
 
-# C:\Users\allen\Desktop\Output labeled image folder path
-image_out = os.path.join(output_path, "labeled_image")
-if not os.path.exists(image_out):
-    os.makedirs(image_out)
+# Output xml file path
+xml_name = sys.argv[3]
+xml_path = r"C:\Users\allen\Desktop"
+#xml_name = sys.argv[4]
 
-# C:\Users\allen\Desktop\Output labels and scores
-# label_path = os.path.join(output_path, "label_output")
+# Output xml file name
+label_file = os.path.join(xml_path, xml_name)
 
-# C:\Users\allen\Desktop\Output file
-label_file = os.path.join(output_path, "Objects.xml")
+# Split the input_path into a list of its components
+input_path_components = input_path.split(os.sep)
+
+# Concatenate the output_path with the last 6 components of the input_path
+output_path = os.path.join(output_path, *input_path_components[-5:])
+
+# get the root path for input
+root_path = os.path.join(*input_path_components[:-5])
+
+# Check if the output directory exists
+if not os.path.exists(output_path):
+    # Create the output directory if necessary
+    os.makedirs(output_path)
+
+
+
+#image_out = os.path.join(output_path, "labeled_image")
+#if not os.path.exists(image_out):
+#    os.makedirs(image_out)
+
 
 
 # Create root element
 root = ET.Element("DataContainer")
-dilist = ET.SubElement(root, "dilist")
-ET.SubElement(dilist, "datapath").text = input_path
+#dilist = ET.SubElement(root, "dilist")
+#ET.SubElement(dilist, "datapath").text = root_path
 
 
 # Iterate over the images for xml output
@@ -89,7 +111,8 @@ for files in os.listdir(input_path):
     img = os.path.join(input_path, files)
     result = inference_detector(model, img)
 
-    show_result_pyplot(model, img, result, score_thr=0.4, out_file = os.path.join(image_out, files))
+    # Output images first
+    show_result_pyplot(model, img, result, score_thr=0.4, out_file = os.path.join(output_path, files))
 
     # Get label class and score
     bbox_result = result
@@ -111,39 +134,43 @@ for files in os.listdir(input_path):
     # Create a subelement for each image
     
 
-    doc = ET.SubElement(root, "objectlist")
+    doc = ET.SubElement(root, "labellist")
 
     starttime = files[0:4] + "-" + files[4:6] + "-" + files[6:8] + "T" + files[9:11] + ":" + files[11:13] + ":" + files[13:15] + ".000"
     endtime = files[0:4] + "-" + files[4:6] + "-" + files[6:8] + "T" + files[9:11] + ":" + files[11:13] + ":" + files[13:15] + ".999"
-    labeltime = files[0:4] + "-" + files[4:6] + "-" + files[6:8] + "T" + files[9:11] + ":" + files[11:13] + ":" + files[13:15]
+    
+    # current time
+    now = datetime.datetime.now()
+
+    labeltime = now.strftime('%Y-%m-%dT%H:%M:%S')
+
 
     cl = ','.join(map(str, labels_class))
-    sc = ','.join(map(str, labels_score))
-    bd = ','.join(map(str, box_dim))
+    #sc = ','.join(map(str, labels_score))
+    #bd = ','.join(map(str, box_dim))
 
 
-    ET.SubElement(doc, "object_class").text = cl
+    ET.SubElement(doc, "eventtype").text = cl
 
     ET.SubElement(doc, "start").text = starttime
     ET.SubElement(doc, "end").text = endtime
     ET.SubElement(doc, "labeldtime").text = labeltime
 
-    ET.SubElement(doc, "object_score").text = sc
-    ET.SubElement(doc, "box_coordinate").text = bd
+    # In case we want to output object_score and box_coordinates
+    #ET.SubElement(doc, "object_score").text = sc
+    #ET.SubElement(doc, "box_coordinate").text = bd
 
     dom = xml.dom.minidom.parseString(ET.tostring(root))
     xml_string = dom.toprettyxml()
     part1, part2 = xml_string.split('?>')
 
     with open(label_file, 'w') as xfile:
-        #xfile.write(part1 + 'encoding=\"{}\"?>\n'.format(m_encoding) + part2)
         xfile.write(part1+'?>\n' + part2)
         xfile.close()    
 
 
 
 #print("Object Detection Finished!")
-
 
 
 
