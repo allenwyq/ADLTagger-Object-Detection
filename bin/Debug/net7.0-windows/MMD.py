@@ -59,30 +59,34 @@ model = init_detector(config_file, checkpoint_file, device='cuda:0')
 
 
 # Input image folder path
-image_in = "Input\\data50"
+# input_path = "Input\\data50"
+input_path = sys.argv[1]
 
 # C:\Users\allen\Desktop\Output folder path
-output_path = "Output"
+# output_path = "Output"
+output_path = sys.argv[2]
 
 # C:\Users\allen\Desktop\Output labeled image folder path
 image_out = os.path.join(output_path, "labeled_image")
+if not os.path.exists(image_out):
+    os.makedirs(image_out)
 
 # C:\Users\allen\Desktop\Output labels and scores
-label_path = os.path.join(output_path, "label_output")
+# label_path = os.path.join(output_path, "label_output")
 
 # C:\Users\allen\Desktop\Output file
-label_file = os.path.join(label_path, "Objects.xml")
+label_file = os.path.join(output_path, "Objects.xml")
 
 
 # Create root element
 root = ET.Element("DataContainer")
 dilist = ET.SubElement(root, "dilist")
-ET.SubElement(dilist, "datapath").text = image_in
+ET.SubElement(dilist, "datapath").text = input_path
 
 
 # Iterate over the images for xml output
-for files in os.listdir(image_in):
-    img = os.path.join(image_in, files)
+for files in os.listdir(input_path):
+    img = os.path.join(input_path, files)
     result = inference_detector(model, img)
 
     show_result_pyplot(model, img, result, score_thr=0.4, out_file = os.path.join(image_out, files))
