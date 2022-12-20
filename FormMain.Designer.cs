@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ButtonIn = new System.Windows.Forms.Button();
             this.ButtonOut = new System.Windows.Forms.Button();
+            this.XmlTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ButtonObject
@@ -40,7 +41,7 @@
             this.ButtonObject.BackColor = System.Drawing.Color.YellowGreen;
             this.ButtonObject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonObject.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ButtonObject.Location = new System.Drawing.Point(451, 635);
+            this.ButtonObject.Location = new System.Drawing.Point(466, 770);
             this.ButtonObject.Name = "ButtonObject";
             this.ButtonObject.Size = new System.Drawing.Size(607, 139);
             this.ButtonObject.TabIndex = 0;
@@ -51,7 +52,7 @@
             // ButtonPythonInterpreter
             // 
             this.ButtonPythonInterpreter.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ButtonPythonInterpreter.Location = new System.Drawing.Point(44, 67);
+            this.ButtonPythonInterpreter.Location = new System.Drawing.Point(44, 118);
             this.ButtonPythonInterpreter.Name = "ButtonPythonInterpreter";
             this.ButtonPythonInterpreter.Size = new System.Drawing.Size(656, 187);
             this.ButtonPythonInterpreter.TabIndex = 1;
@@ -73,7 +74,7 @@
             // ButtonIn
             // 
             this.ButtonIn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ButtonIn.Location = new System.Drawing.Point(44, 317);
+            this.ButtonIn.Location = new System.Drawing.Point(44, 404);
             this.ButtonIn.Name = "ButtonIn";
             this.ButtonIn.Size = new System.Drawing.Size(656, 177);
             this.ButtonIn.TabIndex = 3;
@@ -84,19 +85,28 @@
             // ButtonOut
             // 
             this.ButtonOut.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ButtonOut.Location = new System.Drawing.Point(835, 317);
+            this.ButtonOut.Location = new System.Drawing.Point(835, 311);
             this.ButtonOut.Name = "ButtonOut";
             this.ButtonOut.Size = new System.Drawing.Size(591, 177);
             this.ButtonOut.TabIndex = 4;
-            this.ButtonOut.Text = "Select the Output path";
+            this.ButtonOut.Text = "Select the Output path\r\nfor labeled images";
             this.ButtonOut.UseVisualStyleBackColor = false;
             this.ButtonOut.Click += new System.EventHandler(this.ButtonOut_Click);
+            // 
+            // XmlTextbox
+            // 
+            this.XmlTextbox.Location = new System.Drawing.Point(835, 585);
+            this.XmlTextbox.Name = "XmlTextbox";
+            this.XmlTextbox.Size = new System.Drawing.Size(591, 55);
+            this.XmlTextbox.TabIndex = 5;
+            this.XmlTextbox.TextChanged += new System.EventHandler(this.XmlTextbox_TextChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1502, 920);
+            this.ClientSize = new System.Drawing.Size(1502, 962);
+            this.Controls.Add(this.XmlTextbox);
             this.Controls.Add(this.ButtonOut);
             this.Controls.Add(this.ButtonIn);
             this.Controls.Add(this.button1);
@@ -105,6 +115,7 @@
             this.Name = "FormMain";
             this.Text = "ADLTagger Window";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -115,5 +126,7 @@
         private Button button1;
         private Button ButtonIn;
         private Button ButtonOut;
+        private Button ButtonXml;
+        private TextBox XmlTextbox;
     }
 }
