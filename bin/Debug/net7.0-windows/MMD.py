@@ -45,7 +45,7 @@ def extractImages(pathIn, pathOut):
 
 # Capture frames from videos        
 # pathIn = 'Input\\videoplayback.mp4'
-# pathOut = 'C:\Users\allen\Desktop\Output\\frames'
+# pathOut = 'C:\Users\allen\Desktop\\\frames'
 # extractImages(pathIn, pathOut)
 
 
@@ -53,7 +53,7 @@ def extractImages(pathIn, pathOut):
 
 config_file = 'Configs\\yolov3_mobilenetv2_320_300e_coco.py'
 checkpoint_file = 'Configs\\yolov3_mobilenetv2_320_300e_coco_20210719_215349-d18dff72.pth'
-model = init_detector(config_file, checkpoint_file, device='cuda:0')
+model = init_detector(config_file, checkpoint_file, device='cpu')
 
 
 
@@ -61,16 +61,16 @@ model = init_detector(config_file, checkpoint_file, device='cuda:0')
 # Input image folder path
 image_in = "Input\\data50"
 
-# C:\Users\allen\Desktop\Output folder path
-output_path = "Output"
+# C:\Users\allen\Desktop\ folder path
+output_path = "C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\bin\Debug\net7.0-windows\C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\bin\Debug\net7.0-windows\Output222"
 
-# C:\Users\allen\Desktop\Output labeled image folder path
+# C:\Users\allen\Desktop\ labeled image folder path
 image_out = os.path.join(output_path, "labeled_image")
 
-# C:\Users\allen\Desktop\Output labels and scores
+# C:\Users\allen\Desktop\ labels and scores
 label_path = os.path.join(output_path, "label_output")
 
-# C:\Users\allen\Desktop\Output file
+# C:\Users\allen\Desktop\ file
 label_file = os.path.join(label_path, "Objects.xml")
 
 

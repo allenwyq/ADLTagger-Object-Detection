@@ -1,0 +1,9 @@
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.csproj.AssemblyReference.cache
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.csproj.SuggestedBindingRedirects.cache
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.FormMain.resources
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.FormObject.resources
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.csproj.GenerateResource.cache
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.AssemblyInfoInputs.cache
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.AssemblyInfo.cs
+C:\Users\litch\OneDrive\デスクトップ\enshu\wang\ADLTagger-Object-Detection\obj\Debug\net472\ObjDet.csproj.CoreCompileInputs.cache
