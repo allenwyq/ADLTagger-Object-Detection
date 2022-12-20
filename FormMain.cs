@@ -7,14 +7,14 @@ namespace ObjDet
 {
     public partial class FormMain : Form
     {
-        private string PythonInterpreterPath;
+        
         private string PythonFilePath;
-
-        private string inputfolder;
-        private string outputfolder;
-
         private string PythonInputPath;
         private string PythonOutputPath;
+
+
+        private string PythonInterpreterPath;
+
         //private string PythonModelPath;
 
         public FormMain()
@@ -66,19 +66,9 @@ namespace ObjDet
             {
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    inputfolder = folderBrowserDialog.SelectedPath;
+                    PythonInputPath = folderBrowserDialog.SelectedPath;
                 }
             }
-
-            // Read the Python file into a string
-            string inputpath = File.ReadAllText(PythonFilePath);
-
-            // Modify the path within the string using string manipulation techniques
-            // For example, you can use the string.Replace method to replace the old path with the new path
-            inputpath = inputpath.Replace("Input\\data50", inputfolder);
-
-            // Write the modified string back to the Python file
-            File.WriteAllText(PythonFilePath, inputpath);
 
         }
         
@@ -91,19 +81,9 @@ namespace ObjDet
             {
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    outputfolder = folderBrowserDialog.SelectedPath;
+                    PythonOutputPath = folderBrowserDialog.SelectedPath;
                 }
             }
-
-            // Read the Python file into a string
-            string outputpath = File.ReadAllText(PythonFilePath);
-
-            // Modify the path within the string using string manipulation techniques
-            // For example, you can use the string.Replace method to replace the old path with the new path
-            outputpath = outputpath.Replace("Output", outputfolder);
-
-            // Write the modified string back to the Python file
-            File.WriteAllText(PythonFilePath, outputpath);
 
         }
 
@@ -120,7 +100,7 @@ namespace ObjDet
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = PythonInterpreterPath,
-                Arguments = PythonFilePath,
+                Arguments = string.Format("{0} {1} {2}", PythonFilePath, PythonInputPath, PythonOutputPath),
                 UseShellExecute = false,
                 RedirectStandardOutput = true
             };
